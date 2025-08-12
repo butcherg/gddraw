@@ -1,3 +1,7 @@
+# gddraw - script-based drawing tool
+
+I got tired of trying to get a Windows Perl environment that included libgd, so I wrote a command-line program that reads a script file to invoke GD primitives.  Available script statements:
+
 - image(w,h); - Initializes the image. Do this first, or the rest of the script will not work.
 - pensize(n); - Sets the pen size for subsequent lines.  Default: 1.
 - linecolor('black'|'white'|hex); Sets the pen color for subsequent lines. Default: 'white'.
@@ -15,3 +19,29 @@
 - filledlinerectangle(x1,y1,x2,y2); - Renders a rectangle as a filled area in the fillcolor and an outline in the line color from corner x1,y1 to corner x2,y2.
 - flipvertical; - Flips the image vertically;
 - fliphorizontal; - Flips the image horizontally;
+
+## Dependencies
+
+gddraw depends on libgd, an OS package is the easiest way to go.  For Debian/Ubuntu:
+
+    $ apt get install libgd-dev
+
+for MSYS2:
+
+    $ pacman -S mingw-w64-x86_64-libgd 
+    or
+    $ pacman -S mingw-w64-ucrt-x86_64-libgd
+
+## Building
+
+    $ git clone https://github.com/butcherg/gddraw.git
+    $ cd gddraw
+    $ mkdir build && cd build
+    $ cmake ..
+    $ make|ninja|whatever
+
+## Running
+
+    $ ./gddraw scriptfile.txt image.png
+
+gddraw only makes .png images at this time.
