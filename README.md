@@ -20,6 +20,10 @@ I got tired of trying to get a Windows Perl environment that included libgd, so 
 - flipvertical; - Flips the image vertically;
 - fliphorizontal; - Flips the image horizontally;
 
+You can define variables, they start with a '$': $foo=21;
+
+You can use basic math expressions in both variable assignments and statement parameters: image($w*2, ($h+20)*2);
+
 ## Dependencies
 
 gddraw depends on libgd, an OS package is the easiest way to go.  For Debian/Ubuntu:
