@@ -47,5 +47,10 @@ for MSYS2:
 ## Running
 
     $ ./gddraw scriptfile.txt image.png
+	
+or
+    $ ./gddraw scriptfile.txt
+	
+The latter saves scriptfile.png.
 
 gddraw only makes .png images at this time.

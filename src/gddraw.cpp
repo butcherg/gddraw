@@ -311,11 +311,23 @@ void  parseLine(std::string line)
 	}
 }
 
+std::string remove_extension(const std::string& filename) {
+    size_t lastdot = filename.find_last_of('.');
+    if (lastdot == std::string::npos) { // No dot found, return original string
+        return filename;
+    }
+    return filename.substr(0, lastdot);
+}
+
 
 int main(int argc, char **argv)
 {
+	std::string outfile;
 	if (argc < 2) err("Error: no script filename.");
-	if (argc < 3) err("Error: no image filename.");
+	if (argc < 3)  //err("Error: no image filename.");
+		outfile = remove_extension(std::string(argv[1]))+".png";
+	else 
+		outfile = std::string(argv[2]);
 	
 	std::ifstream qfile(argv[1]);
 	std::vector<std::string> lines;
@@ -325,8 +337,8 @@ int main(int argc, char **argv)
 	for (lineno = 1; lineno <= lines.size(); lineno++)
 		parseLine(lines[lineno-1]);
 	
-	std::cout << "Saving " << argv[2] << std::endl;
-	FILE *fp = fopen(argv[2], "wb");
+	std::cout << "Saving " << outfile << std::endl;
+	FILE *fp = fopen(outfile.c_str(), "wb");
 	if (!fp) {
 		gdImageDestroy(im);
 		err("Can't save png image.\n");
